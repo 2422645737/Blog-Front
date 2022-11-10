@@ -1,11 +1,24 @@
-# Blog-Front
-这里主要是个人博客网站的前端部分代码
+# myblog
 
-使用的框架是
-- Vue
-- ElementUI
+## Project setup
+```
+npm install
+```
 
-这是我修改后的文件
-现在我修改到了dev分支
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
+### Compiles and minifies for production
+```
+npm run build
+```
 
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
