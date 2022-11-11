@@ -3,30 +3,31 @@
     <div class="title">
         {{article.title}}
     </div>
+    <hr>
     <div class="tag" v-show="article.type == 'blog'">
         <!-- 文章标签 -->
-        <el-tag type="info" v-for="(item,index) in article.tag" :key="index">{{item}}</el-tag>
+        <el-tag type="info" v-for="(item,index) in article.tags" :key="index">{{item}}</el-tag>
     </div>
     <div class="cover">
         <!-- 封面 -->
         <img v-show = "article.cover !== ''" :src="article.cover" alt="">
-        <div class="summary">{{article.summary}}</div>
+        <div class="summary">{{article}}</div>
     </div>
-    <div class="footer">
+    <div class="footer" v-if="article">
         <!-- 底部横幅内容 -->
         <div class="footer_time">{{article.publish_time}}</div>
         <div class="fill"></div>
-        <div class="footer_count">
+        <div class="footer_count" v-if="article.quantity">
             <img src="../../public/images/article_icon/count.png" alt="">
-            阅读:{{article.count}}
+            阅读:{{article.quantity}}
         </div>
-        <div class="footer_like">
+        <div class="footer_like" v-if="article.likes">
             <img src="../../public/images/article_icon/like.png" alt="">
-            点赞:{{article.like_number}}
+            点赞:{{article.likes.length}}
         </div>
-        <div class="footer_comment">
+        <div class="footer_comment" v-if="article.comments">
             <img src="../../public/images/article_icon/comment.png" alt="">
-            评论:{{article.comment_number}}
+            评论:{{article.comments.length}}
         </div>
     </div>
 </div>
@@ -36,16 +37,18 @@
 export default {
     name: 'blog_card',
     props:['article'],
+    mounted(){
+    },
     data(){
         return {
-            summary_max_length: 400   //摘要最长字数
+            summary_max_length: 400,   //摘要最长字数
         }
     }
 
 }
 </script>
 
-<style>
+<style scoped>
 /* 封面样式 */
 .cover{
     background-color: blanchedalmond;
@@ -59,7 +62,6 @@ export default {
 }
 /* 文章标题样式 */
 .title{
-    background-color: red;
     font-size: 19px;
     text-align: left;
 }
@@ -75,20 +77,21 @@ export default {
 .tag{
     /* background-color: green; */
     text-align: left;
+    padding-bottom: 7px;
 }
 /* 摘要样式 */
 .summary{
-    background-color: aqua;
     text-align: left;
 }
 /* 底部内容样式 */
 .footer{
-    background-color: chartreuse;
+    padding-top: 8px;
     display: flex;
     justify-content: left;
 }
 .footer > div {
     margin-left: 10px;
+    text-align: left;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -98,22 +101,22 @@ export default {
     height: 20px;
     margin-right: 5px;
 }
-.footer > .footer_time{
-    background-color: red;
-    margin-left: 2px;
+.footer_time{
+    width: 20%;
+    margin-left: 0px !important;
 }
-.footer > .footer_count{
-    background-color: green;
+.footer_count{
+    width: 15%;
 }
-.footer > .footer_like{
-    background-color: yellow;
+.footer_like{
+    width: 15%;
     margin-left: 20px;
 }
-.footer > .footer_comment{
-    background-color:aqua;
+.footer_comment{
+    width: 15%;
     margin-left: 20px;
 }
-.footer > .fill{
-    width: 60%;
+.fill{
+    width: 20%;
 }
 </style>

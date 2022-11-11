@@ -4,24 +4,24 @@
     <div class="images">
         <!-- 图片 -->
         <!-- 这里展示一行图片 -->
-        <img v-for="(item,index) in article.images" :key="index" :src="item" alt="">
+        <!-- <img v-for="(item,index) in article.cover" :key="index" :src="item" alt=""> -->
 
     </div>
-    <div class="footer">
+    <div class="footer" v-if="article">
         <!-- 底部横幅内容 -->
-        <div class="footer_time">{{article.publish_time}}</div>
+        <div class="footer_time" v-if="article.publish_time">{{article.publish_time}}</div>
         <div class="fill"></div>
         <div class="footer_count">
             <img src="../../public/images/article_icon/count.png" alt="">
-            阅读:{{article.count}}
+            阅读:{{article.quantity}}
         </div>
-        <div class="footer_like">
+        <div class="footer_like" v-if="article.likes">
             <img src="../../public/images/article_icon/like.png" alt="">
-            点赞:{{article.like_number}}
+            点赞:{{article.likes.length}}
         </div>
-        <div class="footer_comment">
+        <div class="footer_comment" v-if="article.comments">
             <img src="../../public/images/article_icon/comment.png" alt="">
-            评论:{{article.comment_number}}
+            评论:{{article.comments.length}}
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* 文章内容样式 */
 .content {
     text-align: left;
