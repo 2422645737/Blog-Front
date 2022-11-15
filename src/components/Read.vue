@@ -6,10 +6,8 @@
         </el-header>
         <el-container>
             <el-aside>
-                <Aside></Aside>
             </el-aside>
-            <el-main v-if="1">
-                <Main></Main>
+            <el-main>
             </el-main>
         </el-container>
     </el-container>
@@ -19,13 +17,11 @@
 <script>
 import Header from './Header.vue'
 import Aside from './Aside.vue'
-import Main from './Main.vue'
 export default {
-    name: 'index',
+    name: 'Read',
     components:{
         Header,
         Aside,
-        Main
     }
 }
 </script>
